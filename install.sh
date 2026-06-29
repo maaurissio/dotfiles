@@ -72,6 +72,33 @@ set_zsh() {
   fi
 }
 
+# ── Discos ────────────────────────────────────────────────────────────────────
+
+setup_disks() {
+  sudo mkdir -p /mnt/Clips /mnt/Windows
+
+  # grub-reboot sin contraseña
+  echo "maurisio ALL=(ALL) NOPASSWD: /usr/bin/grub-reboot" \
+    | sudo tee /etc/sudoers.d/grub-reboot > /dev/null
+  sudo chmod 440 /etc/sudoers.d/grub-reboot
+
+  # Entradas fstab (solo si no existen ya)
+  if ! grep -q "4C002877002869E2" /etc/fstab; then
+    echo "UUID=4C002877002869E2  /mnt/Clips    ntfs-3g  uid=1000,gid=1000,dmask=022,fmask=133,utf8,nofail  0  0" \
+      | sudo tee -a /etc/fstab > /dev/null
+    echo "  -> fstab: Clips agregado"
+  fi
+
+  if ! grep -q "DC36D1FF36D1DB1A" /etc/fstab; then
+    echo "UUID=DC36D1FF36D1DB1A  /mnt/Windows  ntfs-3g  uid=1000,gid=1000,dmask=022,fmask=133,utf8,nofail,ro  0  0" \
+      | sudo tee -a /etc/fstab > /dev/null
+    echo "  -> fstab: Windows agregado"
+  fi
+
+  sudo systemctl daemon-reload
+  sudo mount -a 2>/dev/null || true
+}
+
 # ── Main ──────────────────────────────────────────────────────────────────────
 
 echo "==> Instalando paquetes..."
@@ -82,6 +109,9 @@ link_dotfiles
 
 echo "==> Configurando shell..."
 set_zsh
+
+echo "==> Configurando discos..."
+setup_disks
 
 echo ""
 echo "Todo listo. Reinicia sesión para aplicar los cambios."
