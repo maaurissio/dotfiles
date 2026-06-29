@@ -1,0 +1,78 @@
+@import url("/home/maurisio/.config/swaync/colors.css");
+
+* {
+    font-family: "JetBrainsMono Nerd Font";
+    font-size: 12px;
+    color: @foreground;
+    border: none;
+    box-shadow: none;
+}
+
+/* PANEL */
+.control-center {
+    margin: 28px;
+    padding: 14px;
+    border-radius: 22px;
+    background-color: @background;
+    border: 2px solid @color1;
+}
+
+.notification-content {
+    background-color: @background;
+    border: 2px solid @color1;
+    border-radius: 18px;
+    padding: 12px;
+}
+
+.notification-background {
+    background-color: transparent;
+    border-radius: 18px;
+}
+
+.notification {
+    background-color: transparent;
+}
+
+.summary {
+    color: @foreground;
+    font-weight: bold;
+}
+
+.body {
+    color: @foreground;
+}
+
+.time {
+    color: @color5;
+}
+
+/* BOTONES */
+.widget-title button {
+    background: alpha(@color1, 0.4);
+    color: @foreground;
+    border-radius: 10px;
+}
+
+.widget-title button:hover {
+    background: alpha(@color2, 0.6);
+}
+
+/* Quitar cualquier highlight raro */
+.notification-row:focus,
+.notification-row:active,
+.notification-row:selected {
+    background: transparent;
+    border: none;
+    outline: none;
+}
+
+/* Quitar glow azul feo */
+*:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+/* Fondo general */
+.floating-notifications {
+    background: transparent;
+}

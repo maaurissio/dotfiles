@@ -1,0 +1,13 @@
+
+
+[ 
+  /* { 
+    "include": [ "~/.config/waybar/layouts/with_music.jsonc" ] 
+  }, */
+  {
+    "include": ["~/.config/waybar/layouts/main_horizontal.jsonc"]
+  },
+  {
+    "include": ["~/.config/waybar/layouts/right_vertical.jsonc"]
+  }
+]

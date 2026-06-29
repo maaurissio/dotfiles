@@ -1,0 +1,22 @@
+# Archivos compilados/cacheados
+*.zwc
+*.pyc
+__pycache__/
+
+# Nvim - lock y caché (se regeneran solos)
+.config/nvim/lazy-lock.json
+
+# Node modules (opencode)
+node_modules/
+
+# Archivos de sesión o caché generados
+.config/wal/sequences
+.config/wal/colors
+.config/wal/colors.sh
+.config/wal/colors.json
+.config/wal/colors-wal-*
+.config/wal/colors-kitty.conf
+.config/fastfetch/*.bak
+
+# Waypaper (solo guarda la última wallpaper elegida, no es config útil)
+.config/waypaper/
