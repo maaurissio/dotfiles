@@ -20,3 +20,9 @@ node_modules/
 
 # Waypaper (solo guarda la última wallpaper elegida, no es config útil)
 .config/waypaper/
+
+# Vesktop - datos de sesión y runtime
+.config/vesktop/sessionData
+.config/vesktop/Crashpad
+.config/vesktop/Singleton*
+.config/vesktop/state.json

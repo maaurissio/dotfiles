@@ -22,6 +22,11 @@ PACKAGES=(
   ttf-jetbrains-mono-nerd
   # Shell
   zsh
+  # Apps
+  google-chrome
+  spotify
+  visual-studio-code-bin
+  vesktop-bin
 )
 
 install_packages() {
