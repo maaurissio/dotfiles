@@ -15,13 +15,13 @@ PACKAGES=(
   # Launchers
   rofi-wayland wofi
   # Wallpaper y colores dinámicos
-  python-pywal swww
-  # Utilidades de escritorio
-  fastfetch btop cava cliphist wl-clipboard nautilus
+  python-pywal awww
+  # Utilidades de escritorio y polkit
+  fastfetch btop cava cliphist wl-clipboard nautilus brightnessctl hyprpolkitagent pipewire-pulse wireplumber eza tty-clock
   # Fuentes
   ttf-jetbrains-mono-nerd
-  # Shell
-  zsh
+  # Shell y node
+  zsh nodejs npm
   # Apps
   google-chrome
   spotify
@@ -46,9 +46,14 @@ install_packages() {
 # ── Dotfiles ──────────────────────────────────────────────────────────────────
 
 link_dotfiles() {
+  # Asegurar permisos de ejecución en scripts
+  find "$DOTFILES_DIR/.config/hypr/scripts" -type f -name "*.sh" -exec chmod +x {} + 2>/dev/null || true
+  [ -f "$DOTFILES_DIR/.config/swaync/update-colors.sh" ] && chmod +x "$DOTFILES_DIR/.config/swaync/update-colors.sh" || true
+
   # Archivos del home
   for file in .zshrc .gitconfig .npmrc .bash_profile .bashrc; do
     if [ -f "$DOTFILES_DIR/$file" ]; then
+      rm -f "$HOME/$file"
       ln -sf "$DOTFILES_DIR/$file" "$HOME/$file"
       echo "  -> ~/$file"
     fi
@@ -56,16 +61,33 @@ link_dotfiles() {
 
   # Directorios de .config
   mkdir -p "$HOME/.config"
-  for dir in "$DOTFILES_DIR"/.config/*/; do
+  for dir in "$DOTFILES_DIR"/.config/*; do
+    [ -d "$dir" ] || continue
     name=$(basename "$dir")
+    rm -rf "$HOME/.config/$name"
     ln -sfn "$dir" "$HOME/.config/$name"
     echo "  -> ~/.config/$name"
   done
+
+  # Generar paleta de colores inicial con pywal si hay fondos disponibles
+  if command -v wal &>/dev/null; then
+    FIRST_WALL=$(find "$DOTFILES_DIR/.config/wallpapers/" -type f \( -iname "*.png" -o -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.webp" \) | head -n 1)
+    if [ -n "$FIRST_WALL" ]; then
+      echo "==> Generando paleta de colores inicial con wal..."
+      wal -i "$FIRST_WALL" 2>/dev/null || true
+      [ -f "$DOTFILES_DIR/.config/swaync/update-colors.sh" ] && "$DOTFILES_DIR/.config/swaync/update-colors.sh" 2>/dev/null || true
+    fi
+  fi
 }
 
 # ── Shell ─────────────────────────────────────────────────────────────────────
 
 set_zsh() {
+  if [ ! -d "$HOME/.oh-my-zsh" ]; then
+    echo "Instalando Oh My Zsh..."
+    git clone https://github.com/ohmyzsh/ohmyzsh.git "$HOME/.oh-my-zsh"
+  fi
+
   if [ "$SHELL" != "$(which zsh)" ]; then
     echo "Cambiando shell a zsh..."
     chsh -s "$(which zsh)"

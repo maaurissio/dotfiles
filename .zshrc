@@ -106,9 +106,11 @@ alias reloj='tty-clock -c -C 7 -r -f "%A, %B %d"'
 alias ls='eza --icons'
 alias ll='eza -lah --icons'
 alias la='eza -a --icons'
-# fastfetch
-export PATH="$(npm bin -g):$PATH"
-export PATH="$(npm config get prefix)/bin:$PATH"
+# npm global bin
+if command -v npm &>/dev/null; then
+  export PATH="$(npm config get prefix 2>/dev/null)/bin:$PATH"
+fi
+
 if [[ $- == *i* ]] && [[ "$TERM_PROGRAM" != "vscode" ]]; then
   fastfetch
 fi

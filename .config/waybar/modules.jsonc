@@ -58,7 +58,7 @@
         "format-icons": ["","","","","","","","","","","","","","",""]
     },
 
-    "wireplumber": {
+    "pulseaudio": {
         "format": "{icon}  {volume}%",
         "format-bluetooth": "{icon} {volume}%",
         "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",

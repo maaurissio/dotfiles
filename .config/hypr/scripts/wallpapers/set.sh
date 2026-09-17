@@ -7,7 +7,11 @@ WALL="${1:-}"
 [ ! -f "$WALL" ] && exit 1
 
 # Wallpaper con awww
-awww img "$WALL" --transition-type center --transition-step 90
+if ! pidof awww-daemon >/dev/null 2>&1; then
+    awww-daemon >/dev/null 2>&1 &
+    sleep 0.5
+fi
+awww img "$WALL" --transition-type fade --transition-duration 1.2 --transition-fps 165
 
 # Pywal
 if command -v wal >/dev/null 2>&1; then

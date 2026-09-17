@@ -3,7 +3,7 @@ set -euo pipefail
 
 WALL_DIR="$HOME/.config/wallpapers"
 
-selected_name=$(find "$WALL_DIR" -type f \
+selected_name=$(find "$WALL_DIR/" -type f \
   \( -iname "*.png" -o -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.webp" \) \
   -printf "%f\n" | sort | wofi --dmenu \
     --prompt "󰸉 Wallpaper" \

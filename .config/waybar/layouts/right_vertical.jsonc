@@ -22,7 +22,7 @@
 
   "group/gright2": {
     "orientation": "horizontal",
-    "modules": ["wireplumber", "network"]
+    "modules": ["pulseaudio", "network"]
   },
 
   "modules-left": ["hyprland/workspaces"],
