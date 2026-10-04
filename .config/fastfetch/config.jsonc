@@ -11,16 +11,6 @@
     "separator": " : ",
   },
   "modules": [
-    /* {
-      "type": "command",
-      "key": "  ",
-      "keyColor": "yellow",
-      "text": "echo 'I am ...'",
-    }, */
-    {
-      "type": "custom",
-      "format": "┌────────────────────────────────────────────────┐",
-    },
     {
       "type": "os",
       "key": "  󰣇 OS",
@@ -29,7 +19,7 @@
     },
     {
       "type": "kernel",
-      "key": "   Kernel",
+      "key": "   Kernel",
       "format": "{2}",
       "keyColor": "red",
     },
@@ -46,7 +36,7 @@
     },
     {
       "type": "terminal",
-      "key": "   Terminal",
+      "key": "   Terminal",
       "keyColor": "yellow",
     },
     {
@@ -55,25 +45,17 @@
       "format": "{2}",
       "keyColor": "yellow",
     },
-    {
-      "type": "custom",
-      "format": "└────────────────────────────────────────────────┘",
-    },
     "break",
     {
       "type": "title",
-      "key": "  ",
+      "key": "  ",
       "keyColor": "yellow",
       "format": "{6} {7} {8}",
     },
     {
-      "type": "custom",
-      "format": "┌────────────────────────────────────────────────┐",
-    },
-    {
       "type": "cpu",
       "format": "{1}",
-      "key": "   CPU",
+      "key": "   CPU",
       "keyColor": "blue",
     },
     {
@@ -84,7 +66,7 @@
     },
     {
       "type": "memory",
-      "key": "   Memory ",
+      "key": "   Memory ",
       "keyColor": "red",
     },
     {
@@ -97,10 +79,6 @@
       "type": "uptime",
       "key": "  󱫐 Uptime ",
       "keyColor": "red",
-    },
-    {
-      "type": "custom",
-      "format": "└────────────────────────────────────────────────┘",
     },
     {
       "type": "colors",
